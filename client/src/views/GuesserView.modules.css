@@ -1,0 +1,67 @@
+.GuesserView {
+    display: flex;
+    justify-content: center;
+}
+
+.GuesserView h2 {
+    text-align: center;
+    color: whitesmoke;
+    margin-top: 30px;
+}
+
+/* .GuesserView table {
+    display: flex;
+    flex-direction: column;
+} */
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.keyboard {
+    position: absolute;
+    bottom: 200px;
+}
+.GuesserView table {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.GuesserView table td {
+    height: 70px;
+    width: 70px;
+    font-size: 25pt;
+    font-weight: 500;
+}
+.incorrect,
+.rightSpot,
+.wrongSpot,
+.currGuessLetter {
+    width: 50px;
+    height: 50px;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+.incorrect {
+    background-color: #3a3a3b;
+}
+
+.rightSpot {
+    background-color: #538d4e;
+}
+
+.wrongSpot {
+    background-color: #b59f3b;
+    font-weight: bolder;
+}
+
+.currGuessLetter {
+    background-color: #121214;
+}
+
+.emptyBox {
+    background-color: #222222;
+    border: thin solid #3a3a3b;
+}

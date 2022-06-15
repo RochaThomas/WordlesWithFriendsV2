@@ -1,0 +1,24 @@
+.Leaderboard {
+    /* background-color: aqua; */
+    margin-top: 50px;
+    width: 450px;
+    color: white;
+}
+.Leaderboard p {
+    font-size: 20pt;
+    font-weight: 900px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.Leaderboard > table {
+    margin-top: 20px;
+    width: 100%;
+    font-size: 14pt;
+}
+.Leaderboard > table td,
+.Leaderboard > table th {
+    text-align: left;
+}
+/* .Leaderboard > table {
+    width: 100%;
+} */

@@ -1,0 +1,28 @@
+.CreatorView {
+    /* background-color: aqua; */
+    margin-top: 30px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    font-size: 16pt;
+}
+
+.links > a {
+    text-decoration: none;
+    /* background-color: #fdcb58; */
+    color: #222222;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 0.3rem;
+    /* color: whitesmoke; */
+}
+
+.links a:first-child {
+    background-color: #53ad5c;
+}
+.links a:last-child {
+    background-color: #fdcb58;
+}

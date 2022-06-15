@@ -1,0 +1,47 @@
+.creatorForm {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+.creatorForm > div {
+    font-weight: 500;
+    text-align: center;
+    padding: 60px 0px;
+    font-size: 18pt;
+    color: whitesmoke;
+}
+.creatorForm a {
+    display: inline-flex;
+    gap: 3px;
+    width: min-content;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.creatorForm span {
+    background-color: #53ad5c;
+    font-size: 16pt;
+    font-weight: 600;
+}
+.creatorForm > form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* temporary styling */
+    width: 400px;
+}
+
+.creatorForm > form > input[type="text"] {
+    padding: 10px;
+    font-size: 14pt;
+}
+
+.creatorForm > form > input[type="submit"] {
+    padding: 10px;
+    font-size: 14pt;
+    cursor: pointer;
+}
+.errorMsg {
+    color: rgb(255, 76, 76);
+}

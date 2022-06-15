@@ -1,0 +1,6 @@
+.creatorForm {
+    display: flex;
+    flex-direction: column;
+    /* temporary styling */
+    width: 400px;
+}

@@ -1,0 +1,49 @@
+.keyboardRow {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    margin-bottom: 3px;
+}
+
+.incorrect,
+.rightSpot,
+.wrongSpot,
+.default,
+.enter,
+.delete {
+    color: white;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 16pt;
+}
+
+.incorrect {
+    background-color: #3a3a3b;
+}
+
+.rightSpot {
+    background-color: #538d4e;
+}
+
+.wrongSpot {
+    background-color: #b59f3b;
+    font-weight: bolder;
+}
+
+.default,
+.delete,
+.enter {
+    background-color: #818384;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    /* font-weight: bolder; */
+}
+
+.delete,
+.enter {
+    width: 75px;
+    height: 50px;
+}
