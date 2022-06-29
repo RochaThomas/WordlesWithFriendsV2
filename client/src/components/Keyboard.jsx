@@ -6,7 +6,6 @@ import axios from "axios";
 const Keyboard = (props) => {
     const [letterDictionary, setLetterDictionary] = useState({});
     const [isLoaded, setIsLoded] = useState(false);
-    const [validWord, setValidWord] = useState(false);
 
     const letterVals = [
         ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
@@ -16,6 +15,7 @@ const Keyboard = (props) => {
 
     //might have to make temp dictionary then setLetterDictionary(tempDictionary);
     useEffect(() => {
+        console.log("----- Keyboard -----")
         for (let i = 0; i < letterVals.length; i++) {
             for (let j = 0; j < letterVals[i].length; j++) {
                 if (letterVals[i][j] === "ENTER") {
@@ -30,28 +30,6 @@ const Keyboard = (props) => {
         setLetterDictionary({ ...letterDictionary });
         setIsLoded(true);
     }, []);
-
-    // const callWordAPI = () => {
-    //     // let flag = false;
-    //     axios
-    //         .get(
-    //             `https://api.dictionaryapi.dev/api/v2/entries/en/${props.currGuess.join(
-    //                 ""
-    //             )}`
-    //         )
-    //         .then((response) => {
-    //             console.log(response);
-    //             // setAPIResp(true);
-    //             setValidWord(true);
-    //             // flag = true;
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //             setValidWord(false);
-    //             // flag = false;
-    //         });
-    //     // return flag;
-    // };
 
     const clickKeyboard = (letter) => {
         /*
@@ -118,12 +96,14 @@ const Keyboard = (props) => {
                     );
                     console.log(letterDictionary);
 
+                    props.setError(null);
+
                     if (
                         lastGuess === props.word ||
                         props.prevGuesses.length + 2 > 6
                     ) {
                         props.setScore(props.prevGuesses.length + 1);
-                        if (lastGuess != props.word) {
+                        if (lastGuess !== props.word) {
                             props.setScore(10);
                         }
                         props.setGameOver(true);
@@ -131,6 +111,9 @@ const Keyboard = (props) => {
                 })
                 .catch((err) => {
                     console.log(err);
+                    const errorArr = [];
+                    errorArr.push("This word is not valid. Try again.");
+                    props.setError(errorArr);
                 });
         }
 

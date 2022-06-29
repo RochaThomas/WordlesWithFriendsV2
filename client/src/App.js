@@ -1,9 +1,10 @@
 import "./App.css";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Main from "./views/Main";
 import GuesserView from "./views/GuesserView";
 import CreatorView from "./views/CreatorView";
 import Header from "./components/Header";
+import LeaderboardView from "./views/LeaderboardView";
 
 function App() {
     return (
@@ -17,6 +18,9 @@ function App() {
                     </Route>
                     <Route exact path="/creator/:encryptedObj">
                         <CreatorView />
+                    </Route>
+                    <Route exact path="/leaderboard/:encryptedObj">
+                        <LeaderboardView />
                     </Route>
                     <Route exact path="/">
                         <Main />

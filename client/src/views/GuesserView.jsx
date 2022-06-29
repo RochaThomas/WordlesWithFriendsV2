@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Header from "../components/Header";
 import Keyboard from "../components/Keyboard";
 import Modal from "../components/Modal";
 import styles from "./GuesserView.modules.css";
@@ -18,9 +17,12 @@ const GuesserView = () => {
     const [score, setScore] = useState(7);
     const [word, setWord] = useState("");
 
+    const [error, setError] = useState(null);
+
     const [gameOver, setGameOver] = useState(false);
 
     useEffect(() => {
+        console.log("----- Guesser View -----")
         console.log(encryptedObj);
 
         const bytes = CryptoJS.AES.decrypt(
@@ -28,15 +30,16 @@ const GuesserView = () => {
             "secret-key"
         );
         const decryptedObj = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        console.log(decryptedObj.name);
+        console.log(decryptedObj._id);
         setData({
-            id: decryptedObj.id,
+            _id: decryptedObj._id,
             name: decryptedObj.name,
             word: decryptedObj.word,
         });
         setWord(decryptedObj.word);
         // const { id, name, word } = decryptedObject;
         console.log(decryptedObj);
+        console.log(data);
     }, []);
 
     const empty = [];
@@ -56,6 +59,11 @@ const GuesserView = () => {
                         {/* insert creator's name below this will come from the link*/}
                         <h2>You have 6 tries to guess {data.name}'s word</h2>
                         <div className="center">
+                            {error ? (
+                                <p className="errorMsg" >{error[0]}</p>
+                            ) : (
+                                <p className="invisible" >  Made by Tommy and Ken  </p>
+                            )}
                             <table>
                                 <tbody>
                                     {/* use a for loop to spit out the rows
@@ -122,20 +130,10 @@ const GuesserView = () => {
                                             </tr>
                                         );
                                     })}
-                                    {/* how do we output empty boxes...
-                        {() => {
-                            let emptyBoxes =
-                                (for i = 0; i < 5 - prevGuesses.length; i++) {
-                                    emptyBoxes.push(<div className=""></div>)
-                                }
-                            return emptyBoxes;
-                        }} */}
                                 </tbody>
                             </table>
                         </div>
-                        {/* insert keyboard component here */}
                         <div className="center">
-                            {/* <div className="keyboard"> */}
                             <Keyboard
                                 setCurrGuess={setCurrGuess}
                                 setPrevGuesses={setPrevGuesses}
@@ -145,14 +143,14 @@ const GuesserView = () => {
                                 setScore={setScore}
                                 word={word}
                                 setGameOver={setGameOver}
+                                setError={setError}
                             />
-                            {/* </div> */}
                         </div>
                         {/* {JSON.stringify(gameOver)} */}
                         {/* ternary to check if the word was guessed (use Score state if gameOver === true) display modal*/}
                     </div>
                     {gameOver ? (
-                        <Modal creatorId={data.id} score={score} word={word} />
+                        <Modal creatorId={data._id} score={score} word={word} encryptedObj={encryptedObj}/>
                     ) : (
                         <div></div>
                     )}

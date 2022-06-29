@@ -5,9 +5,10 @@ import axios from "axios";
 
 const Modal = (props) => {
     const [guesserName, setGuesserName] = useState("");
-    const [error, setError] = useState(false);
+    const [errors, setErrors] = useState([]);
+    let creatorGuessers = [];
+    let newGuesser = {};
     const history = useHistory();
-    // const [score, setScore] = useState(5);
     const refreshPage = () => {
         window.location.reload(false);
     };
@@ -15,44 +16,83 @@ const Modal = (props) => {
     /*=========================================================================
         Handle API Request with AXIOS
     =========================================================================*/
+    // try chaining api calls
     const postAPI = () => {
         axios
-            .post(`http://localhost:8080/api/guessers`, null, {
-                params: {
-                    name: guesserName,
-                    attempts: props.score,
-                    creator_id: props.creatorId,
-                },
+            .post('http://localhost:8000/api/guessers/new', {
+                name: guesserName,
+                attempts: props.score,
+                creator_id: props.creatorId,
             })
             .then((response) => {
-                // console.log("Creator ID:", response.data.id);
-                console.log(response);
-                // history.push(`/`);
-                // refreshPage();
+                console.log(response.data.guesser);
+                newGuesser = response.data.guesser;
+                console.log("New Guesser", newGuesser);
+                return axios
+                    .get('http://localhost:8000/api/creators/' + newGuesser.creator_id);
             })
-            .catch((err) => {
-                console.log("ERROR", err);
-            });
+            .catch(err => {
+                const errorResponse = err.response.data.errors;
+                const errorArr = [];
+                for (const key of Object.keys(errorResponse)){
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+                console.log("Error with new guesser", err);
+            })
+            .then((response) => {
+                console.log(response.data.creator);
+                creatorGuessers = response.data.creator.guessers;
+                console.log("Creator Guessers", creatorGuessers);
+                return axios
+                    .put('http://localhost:8000/api/creators/update/' + newGuesser.creator_id, {
+                        guessers: [...creatorGuessers, newGuesser]
+                    })
+            })
+            .catch(err => {
+                const errorResponse = err.response.data.errors;
+                const errorArr = [];
+                for (const key of Object.keys(errorResponse)){
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+                console.log("Error with get creator", err);
+            })
+            .then((response) => {
+                console.log(response.data.creator.guessers);
+                history.push(`/leaderboard/${props.encryptedObj}`);
+            })
+            .catch(err => {
+                const errorResponse = err.response.data.errors;
+                const errorArr = [];
+                for (const key of Object.keys(errorResponse)){
+                    errorArr.push(errorResponse[key].message)
+                }
+                setErrors(errorArr);
+                console.log("Error with updating creator guessers", err);
+            })
     };
-
+        
     const handleSubmission = (e) => {
         e.preventDefault();
-        let errorFlag = false;
-        if (!guesserName) {
-            errorFlag = true;
-        } else {
-            postAPI();
-            history.push(`/`);
-            refreshPage();
-        }
-        setError(errorFlag);
+        console.log("----- Modal -----")
+        postAPI();
+        // let errorFlag = false;
+        // if (!guesserName) {
+        //     errorFlag = true;
+        // } else {
+        //     postAPI();
+        //     // history.push(`/`);
+        //     // refreshPage();
+        // }
+        // setError(errorFlag);
     };
 
     return (
         <div className={styles.Modal}>
             <h1>Thanks for playing!</h1>
             {props.score === 10 ? (
-                <div style={{ "text-align": "center" }}>
+                <div style={{ "textAlign": "center" }}>
                     <h3>You didn't solve the word!</h3>
                     <h3>The word was: {props.word}</h3>
                 </div>
@@ -69,11 +109,12 @@ const Modal = (props) => {
                     }
                     placeholder="Enter Name"
                 />
-                {error ? (
+                {errors.map((err, index) => <p className={styles.errorMsg} key={index}>{err}</p>)}
+                {/* {error ? (
                     <p className={styles.errorMsg}>Please enter a name.</p>
                 ) : (
                     <></>
-                )}
+                )} */}
                 <input type="submit" value="Submit" />
             </form>
         </div>

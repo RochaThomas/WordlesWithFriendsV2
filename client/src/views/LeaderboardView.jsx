@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import styles from "./CreatorView.module.css";
+import styles from "./LeaderboardView.module.css";
 import Leaderboard from "../components/Leaderboard";
 var CryptoJS = require("crypto-js");
 
-const CreatorView = () => {
+const LeaderboardView = () => {
     // const { id, name, word } = useParams();
     const [data, setData] = useState(null);
     const { encryptedObj } = useParams();
 
     const [ifShareClicked, setIfShareClicked] = useState(false);
-    const [ifCreatorClicked, setIfCreatorClicked] = useState(false);
 
     useEffect(() => {
-        console.log("----- Creator View -----")
+        console.log("----- Leaderboard View -----")
         console.log(encryptedObj);
 
         const bytes = CryptoJS.AES.decrypt(
@@ -32,30 +31,11 @@ const CreatorView = () => {
     }, []);
 
     return (
-        <div className={styles.CreatorView}>
+        <div className={styles.LeaderboardView}>
             {data ? (
                 <div>
                     {/* <h1>{data.name}'s Dashboard</h1> */}
                     <div className={styles.links}>
-                        {/* <h3>Creator Link:</h3> */}
-                        {ifCreatorClicked ? (
-                            <button
-                                className={styles.clickedCreator}
-                                onClick={ () => {navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`)}}
-                            >
-                                Copied!
-                            </button>
-                        ) : (
-                            <button
-                                className={styles.creatorLink}
-                                onClick={ () => {
-                                    navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`);
-                                    setIfCreatorClicked(true);
-                            }}
-                            >
-                                Creator Link
-                            </button>
-                        )}
                         {ifShareClicked ? (
                             <button
                                 className={styles.clickedShare}
@@ -90,4 +70,4 @@ const CreatorView = () => {
     );
 };
 
-export default CreatorView;
+export default LeaderboardView;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./CreatorForm.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -17,6 +17,7 @@ const initErrors = {
 };
 
 const CreatorForm = () => {
+    const [errors, setErrors] = useState([]);
     const refreshPage = () => {
         window.location.reload(false);
     };
@@ -35,53 +36,132 @@ const CreatorForm = () => {
         React Hooks
     =========================================================================*/
     const [form, setForm] = useState(initForm);
-    const [errors, setErrors] = useState(initErrors);
+    // const [wordAPIResp, setWordAPIResp] = useState(false);
     const history = useHistory();
 
     /*=========================================================================
         Handle API Request with AXIOS
     =========================================================================*/
-    const postAPI = () => {
-        axios
-            .post(`http://localhost:8080/api/creators`, null, {
-                params: {
-                    name: form.name,
-                    word: form.word,
-                },
-            })
-            .then((response) => {
-                console.log("Creator ID:", response.data.id);
-                console.log(response);
-                // Testing Hashed URLS ======================================
-                // encryptObj({ ...form, id: response.data.id });
-                history.push(
-                    `/creator/${encryptObj({
-                        ...form,
-                        id: response.data.id,
-                    })}`
-                );
-                refreshPage();
-                // ==========================================================
-                // history.push(`/${response.data.id}/${form.name}=${form.word}`);
-                // refreshPage();
-            })
-            .catch((err) => {
-                console.log("ERROR", err);
-            });
-    };
+    // const postAPI = () => {
+    //     axios
+    //         .post(`http://localhost:8000/api/creators/new`, {
+    //                 name: form.name,
+    //                 word: form.word,
+    //                 guessers: []
+    //         })
+    //         .then((response) => {
+    //             if (wordAPIResp === false) {
+    //                 throw Error;
+    //             }
+    //             else {
+    //                 console.log("Creator ID:", response.data.creator._id);
+    //                 console.log(response.data);
+    //                 // Testing Hashed URLS ======================================
+    //                 // encryptObj({ ...form, id: response.data.id });
+    //                 history.push(
+    //                     `/creator/${encryptObj({
+    //                         ...form,
+    //                         _id: response.data.creator._id,
+    //                     })}`
+    //                 );
+    //                 refreshPage();
+    //             }
+    //             // ==========================================================
+    //             // history.push(`/${response.data.id}/${form.name}=${form.word}`);
+    //             // refreshPage();
+    //         })
+    //         .catch((err) => {
+    //             const errorResponse = err.response.data.errors;
+    //             const errorArr = [];
+    //             if (wordAPIResp === false && form.word.length === 5) {
+    //                 errorArr.push("This word is not valid. Try again.");
+    //             }
+    //             for (const key of Object.keys(errorResponse)){
+    //                 errorArr.push(errorResponse[key].message)
+    //             }
+    //             setErrors(errorArr);
+    //             setWordAPIResp(false);
+    //         });
+    // };
 
-    const callWordAPI = () => {
+    // const callWordAPI = () => {
+    //     axios
+    //         .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${form.word}`)
+    //         .then((response) => {
+    //             console.log("----- Creator Form -----")
+    //             console.log(response.data);
+    //             setWordAPIResp(true);
+    //         })
+    //         .catch((err) => {
+    //             // if there is an error then push a message to errors
+    //             // "This word is not valid. Try again."
+    //             // setErrors([...errors, "This word is not valid. Try again."])
+    //             console.log(err);
+    //             setWordAPIResp(false);
+    //         })
+    //         .then(postAPI());
+    // };
+
+    const runAPIs = () => {
         axios
             .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${form.word}`)
             .then((response) => {
-                console.log(response);
-                // setAPIResp(true);
-                postAPI();
+                console.log("----- Creator Form -----")
+                console.log(response.data);
+                return axios
+                    .post(`http://localhost:8000/api/creators/new`, {
+                        name: form.name,
+                        word: form.word,
+                        guessers: []
+                    })
+                    .then((response) => {
+                        console.log("Creator ID:", response.data.creator._id);
+                        console.log(response.data);
+                        // Testing Hashed URLS ======================================
+                        // encryptObj({ ...form, id: response.data.id });
+                        history.push(
+                            `/creator/${encryptObj({
+                                ...form,
+                                _id: response.data.creator._id,
+                            })}`
+                        );
+                        refreshPage();
+                    })
+                    .catch(err => {
+                        const errorResponse = err.response.data.errors;
+                        const errorArr = [];
+                        for (const key of Object.keys(errorResponse)){
+                            errorArr.push(errorResponse[key].message)
+                        }
+                        setErrors(errorArr);
+                    })
             })
             .catch((err) => {
+                // if there is an error then push a message to errors
+                // "This word is not valid. Try again."
+                // setErrors([...errors, "This word is not valid. Try again."])
                 console.log(err);
-            });
-    };
+                const errorArr = [];
+                if (!form.word) {
+                    errorArr.push("Enter a valid 5 letter word.");
+                }
+                else {
+                    errorArr.push("This word is not valid. Try again.");
+                }
+
+                if (!form.name) {
+                    errorArr.push("Please enter your name.")
+                }
+                else if (form.name.length < 2) {
+                    errorArr.push("Name must be at least 2 characters.")
+                }
+                else if (form.name.length > 32) {
+                    errorArr.push("Name must be less than 32 characters.")
+                }
+                
+                setErrors(errorArr);
+            })
+    }
 
     // const validateForm = () => {
     //     let validNameFlag = true,
@@ -126,25 +206,26 @@ const CreatorForm = () => {
     =========================================================================*/
     const handleSubmission = (e) => {
         e.preventDefault();
+        runAPIs();
         // some submission function here to post to the spring db
         //hash name and word
         //redirect to creatorView page... route to redirect to will be in app.js\
-        let validNameFlag = true,
-            validWordFlag = true;
-        if (!form.name) {
-            validNameFlag = false;
-        }
-        if (!form.word || form.word.length != 5) {
-            validWordFlag = false;
-        }
-        setErrors({
-            ...errors,
-            nameValid: validNameFlag,
-            wordValid: validWordFlag,
-        });
-        if (validNameFlag && validWordFlag) {
-            callWordAPI();
-        }
+        // let validNameFlag = true,
+        //     validWordFlag = true;
+        // if (!form.name) {
+        //     validNameFlag = false;
+        // }
+        // if (!form.word || form.word.length !== 5) {
+        //     validWordFlag = false;
+        // }
+        // setErrors({
+        //     ...errors,
+        //     nameValid: validNameFlag,
+        //     wordValid: validWordFlag,
+        // });
+        // if (validNameFlag && validWordFlag) {
+        //     callWordAPI();
+        // }
     };
 
     const handleChange = (e) => {
@@ -177,11 +258,12 @@ const CreatorForm = () => {
                     onChange={handleChange}
                     placeholder="Enter Name"
                 />
-                {errors.nameValid ? (
-                    <></>
-                ) : (
-                    <p className={styles.errorMsg}>{errors.nameMsg}</p>
-                )}
+                {errors.map((err, index) => {
+                    if (err.toUpperCase().includes("NAME")) {
+                        return <p className={styles.errorMsg} key={index}>{err}</p>
+                    }
+                    return <></>
+                })}
                 <input
                     type="text"
                     name="word"
@@ -189,11 +271,12 @@ const CreatorForm = () => {
                     onChange={handleChange}
                     placeholder="Enter Word"
                 />
-                {errors.wordValid ? (
-                    <></>
-                ) : (
-                    <p className={styles.errorMsg}>{errors.wordMsg}</p>
-                )}
+                {errors.map((err, index) => {
+                    if (err.toUpperCase().includes("WORD")) {
+                        return <p className={styles.errorMsg} key={index}>{err}</p>
+                    }
+                    return <></>
+                })}
                 <input type="submit" value="Submit" />
             </form>
         </div>

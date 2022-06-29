@@ -44,6 +44,7 @@
 
 .delete,
 .enter {
-    width: 75px;
+    width: 90px;
     height: 50px;
+    /* padding: 0px, 10px; */
 }

@@ -12,11 +12,11 @@ const Leaderboard = (props) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8080/api/creators/${props.id}`)
+            .get(`http://localhost:8000/api/creators/${props.id}`)
             .then((response) => {
-                // console.log(response.data.products);
-                console.log(response);
-                setGuessers(response.data.guessers);
+                console.log("----- Leaderboard -----")
+                console.log(response.data);
+                setGuessers(response.data.creator.guessers.sort((a, b) => a.attempts - b.attempts));
             })
             .catch((err) => {
                 console.log(err);
@@ -51,7 +51,7 @@ const Leaderboard = (props) => {
                             <tr key={idx}>
                                 <td>{guesser.name}</td>
                                 {guesser.attempts === 10 ? (
-                                    <td>X</td>
+                                    <td>FAIL</td>
                                 ) : (
                                     <td>{guesser.attempts}/6</td>
                                 )}

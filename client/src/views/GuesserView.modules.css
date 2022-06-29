@@ -15,7 +15,9 @@
 } */
 .center {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .keyboard {
@@ -23,13 +25,15 @@
     bottom: 200px;
 }
 .GuesserView table {
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 30px;
+    border-spacing: 4px;
 }
 .GuesserView table td {
     height: 70px;
     width: 70px;
     font-size: 25pt;
+    border-width: 3px;
     font-weight: 500;
 }
 .incorrect,
@@ -64,4 +68,12 @@
 .emptyBox {
     background-color: #222222;
     border: thin solid #3a3a3b;
+}
+
+.errorMsg {
+    color: rgb(255, 76, 76);
+}
+
+.invisible {
+    color: #222222
 }

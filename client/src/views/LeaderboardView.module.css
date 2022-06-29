@@ -1,12 +1,11 @@
-.CreatorView {
+.LeaderboardView {
     /* background-color: aqua; */
     margin-top: 30px;
 }
 
 .links {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
 }
 
 button {
@@ -21,21 +20,12 @@ button {
     font-size: 16pt;
 }
 
-.creatorLink {
-    background-color: #53ad5c;
-}
 .shareLink {
     background-color: #fdcb58;
 }
 
 .clickedShare {
     background-color: #ffc02c;
-    border-color: #ffffff;
-    color: #ffffff
-}
-
-.clickedCreator {
-    background-color: #379140;
     border-color: #ffffff;
     color: #ffffff
 }
