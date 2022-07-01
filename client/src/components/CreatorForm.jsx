@@ -18,9 +18,6 @@ const initErrors = {
 
 const CreatorForm = () => {
     const [errors, setErrors] = useState([]);
-    const refreshPage = () => {
-        window.location.reload(false);
-    };
 
     /*=========================================================================
         Encryption with Crypt-JS
@@ -125,7 +122,7 @@ const CreatorForm = () => {
                                 _id: response.data.creator._id,
                             })}`
                         );
-                        refreshPage();
+
                     })
                     .catch(err => {
                         const errorResponse = err.response.data.errors;
