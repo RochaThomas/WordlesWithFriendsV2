@@ -12,7 +12,7 @@ const LeaderboardView = () => {
     const [ifShareClicked, setIfShareClicked] = useState(false);
 
     useEffect(() => {
-        console.log("----- Leaderboard View -----")
+        console.log(" ----- Leaderboard View ----- ")
         // console.log(encryptedObj);
 
         const bytes = CryptoJS.AES.decrypt(
