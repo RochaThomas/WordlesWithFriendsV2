@@ -15,11 +15,11 @@ const Leaderboard = (props) => {
             .get(`http://localhost:8000/api/creators/${props.id}`)
             .then((response) => {
                 console.log("----- Leaderboard -----")
-                console.log(response.data);
+                // console.log(response.data);
                 setGuessers(response.data.creator.guessers.sort((a, b) => a.attempts - b.attempts));
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
             });
     }, []);
 

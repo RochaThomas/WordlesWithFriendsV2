@@ -49,7 +49,7 @@ const Keyboard = (props) => {
                     )}`
                 )
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     let currGuessArr = [];
                     for (let i = 0; i < props.currGuess.length; i++) {
                         let letterObj = {};
@@ -91,10 +91,10 @@ const Keyboard = (props) => {
                     //for loop through currGuess change letter status in dictionary if needed;
 
                     props.setCurrGuess(["", "", "", "", ""]);
-                    console.log(
-                        props.prevGuesses[props.prevGuesses.length - 1]
-                    );
-                    console.log(letterDictionary);
+                    // console.log(
+                    //     props.prevGuesses[props.prevGuesses.length - 1]
+                    // );
+                    // console.log(letterDictionary);
 
                     props.setError(null);
 
@@ -110,7 +110,7 @@ const Keyboard = (props) => {
                     }
                 })
                 .catch((err) => {
-                    console.log(err);
+                    // console.log(err);
                     const errorArr = [];
                     errorArr.push("This word is not valid. Try again.");
                     props.setError(errorArr);

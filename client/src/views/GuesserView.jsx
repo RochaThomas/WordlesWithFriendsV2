@@ -23,14 +23,14 @@ const GuesserView = () => {
 
     useEffect(() => {
         console.log("----- Guesser View -----")
-        console.log(encryptedObj);
+        // console.log(encryptedObj);
 
         const bytes = CryptoJS.AES.decrypt(
             decodeURIComponent(encryptedObj),
             "secret-key"
         );
         const decryptedObj = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        console.log(decryptedObj._id);
+        // console.log(decryptedObj._id);
         setData({
             _id: decryptedObj._id,
             name: decryptedObj.name,
@@ -38,8 +38,8 @@ const GuesserView = () => {
         });
         setWord(decryptedObj.word);
         // const { id, name, word } = decryptedObject;
-        console.log(decryptedObj);
-        console.log(data);
+        // console.log(decryptedObj);
+        // console.log(data);
     }, []);
 
     const empty = [];

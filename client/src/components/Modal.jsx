@@ -25,9 +25,9 @@ const Modal = (props) => {
                 creator_id: props.creatorId,
             })
             .then((response) => {
-                console.log(response.data.guesser);
+                // console.log(response.data.guesser);
                 newGuesser = response.data.guesser;
-                console.log("New Guesser", newGuesser);
+                // console.log("New Guesser", newGuesser);
                 return axios
                     .get('http://localhost:8000/api/creators/' + newGuesser.creator_id);
             })
@@ -38,12 +38,12 @@ const Modal = (props) => {
                     errorArr.push(errorResponse[key].message)
                 }
                 setErrors(errorArr);
-                console.log("Error with new guesser", err);
+                // console.log("Error with new guesser", err);
             })
             .then((response) => {
-                console.log(response.data.creator);
+                // console.log(response.data.creator);
                 creatorGuessers = response.data.creator.guessers;
-                console.log("Creator Guessers", creatorGuessers);
+                // console.log("Creator Guessers", creatorGuessers);
                 return axios
                     .put('http://localhost:8000/api/creators/update/' + newGuesser.creator_id, {
                         guessers: [...creatorGuessers, newGuesser]
@@ -56,10 +56,10 @@ const Modal = (props) => {
                     errorArr.push(errorResponse[key].message)
                 }
                 setErrors(errorArr);
-                console.log("Error with get creator", err);
+                // console.log("Error with get creator", err);
             })
             .then((response) => {
-                console.log(response.data.creator.guessers);
+                // console.log(response.data.creator.guessers);
                 history.push(`/leaderboard/${props.encryptedObj}`);
             })
             .catch(err => {
@@ -69,7 +69,7 @@ const Modal = (props) => {
                     errorArr.push(errorResponse[key].message)
                 }
                 setErrors(errorArr);
-                console.log("Error with updating creator guessers", err);
+                // console.log("Error with updating creator guessers", err);
             })
     };
         

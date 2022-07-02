@@ -19,6 +19,8 @@ button {
     border-radius: 0.3rem;
     border: solid black;
     font-size: 16pt;
+    cursor: pointer;
+    
 }
 
 .creatorLink {

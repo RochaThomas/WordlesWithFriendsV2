@@ -9,13 +9,6 @@ const initForm = {
     word: "",
 };
 
-const initErrors = {
-    nameValid: true,
-    wordValid: true,
-    nameMsg: "Enter your name.",
-    wordMsg: "Enter a valid 5 letter word.",
-};
-
 const CreatorForm = () => {
     const [errors, setErrors] = useState([]);
 
@@ -104,7 +97,7 @@ const CreatorForm = () => {
             .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${form.word}`)
             .then((response) => {
                 console.log("----- Creator Form -----")
-                console.log(response.data);
+                // console.log(response.data);
                 return axios
                     .post(`http://localhost:8000/api/creators/new`, {
                         name: form.name,
@@ -112,8 +105,8 @@ const CreatorForm = () => {
                         guessers: []
                     })
                     .then((response) => {
-                        console.log("Creator ID:", response.data.creator._id);
-                        console.log(response.data);
+                        // console.log("Creator ID:", response.data.creator._id);
+                        // console.log(response.data);
                         // Testing Hashed URLS ======================================
                         // encryptObj({ ...form, id: response.data.id });
                         history.push(
@@ -137,7 +130,7 @@ const CreatorForm = () => {
                 // if there is an error then push a message to errors
                 // "This word is not valid. Try again."
                 // setErrors([...errors, "This word is not valid. Try again."])
-                console.log(err);
+                // console.log(err);
                 const errorArr = [];
                 if (!form.word) {
                     errorArr.push("Enter a valid 5 letter word.");

@@ -14,21 +14,21 @@ const CreatorView = () => {
 
     useEffect(() => {
         console.log("----- Creator View -----")
-        console.log(encryptedObj);
+        // console.log(encryptedObj);
 
         const bytes = CryptoJS.AES.decrypt(
             decodeURIComponent(encryptedObj),
             "secret-key"
         );
         const decryptedObj = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        console.log(decryptedObj.name);
+        // console.log(decryptedObj.name);
         setData({
             _id: decryptedObj._id,
             name: decryptedObj.name,
             word: decryptedObj.word,
         });
         // const { id, name, word } = decryptedObject;
-        console.log(decryptedObj);
+        // console.log(decryptedObj);
     }, []);
 
     return (
