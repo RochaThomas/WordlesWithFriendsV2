@@ -11,6 +11,28 @@ const LeaderboardView = () => {
 
     const [ifShareClicked, setIfShareClicked] = useState(false);
 
+        // copyLink code formed from Lissy93
+    // https://stackoverflow.com/questions/71873824/copy-text-to-clipboard-cannot-read-properties-of-undefined-reading-writetext
+    const copyLink = (text) => {
+        if (navigator.clipboard === undefined){
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+            }
+            catch (err) {
+                console.error("Copy link unsuccessful", err);
+            }
+            document.removeChild(textArea);
+        }
+        else {
+            navigator.clipboard.writeText(text);
+        }
+    }
+
     useEffect(() => {
         console.log(" ----- Leaderboard View ----- ")
         // console.log(encryptedObj);
@@ -40,8 +62,8 @@ const LeaderboardView = () => {
                             <button
                                 className={styles.clickedShare}
                                 onClick={ () => {
-                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -50,8 +72,8 @@ const LeaderboardView = () => {
                             <button
                                 className={styles.shareLink}
                                 onClick={ () => {
-                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
                                     setIfShareClicked(true);
                                 }}
                             >

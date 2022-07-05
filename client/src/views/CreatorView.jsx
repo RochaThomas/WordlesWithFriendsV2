@@ -12,6 +12,29 @@ const CreatorView = () => {
     const [ifShareClicked, setIfShareClicked] = useState(false);
     const [ifCreatorClicked, setIfCreatorClicked] = useState(false);
 
+    // copyLink code formed from Lissy93
+    // https://stackoverflow.com/questions/71873824/copy-text-to-clipboard-cannot-read-properties-of-undefined-reading-writetext
+
+    const copyLink = (text) => {
+        if (navigator.clipboard === undefined){
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+            }
+            catch (err) {
+                console.error("Copy link unsuccessful", err);
+            }
+            document.removeChild(textArea);
+        }
+        else {
+            navigator.clipboard.writeText(text);
+        }
+    }
+
     useEffect(() => {
         console.log("----- Creator View -----")
         // console.log(encryptedObj);
@@ -41,8 +64,10 @@ const CreatorView = () => {
                         {ifCreatorClicked ? (
                             <button
                                 className={styles.clickedCreator}
-                                // onClick={ () => {navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`)}}
-                                onClick={ () => {navigator.clipboard.writeText(`http://54.176.242.11/creator/${encryptedObj}`)}}
+                                // onClick={ () => {copyLink(`http://localhost:3000/creator/${encryptedObj}`)}}
+                                onClick={ () => {
+                                    copyLink(`http://54.176.242.11/creator/${encryptedObj}`);
+                                }}
                             >
                                 Copied!
                             </button>
@@ -50,8 +75,8 @@ const CreatorView = () => {
                             <button
                                 className={styles.creatorLink}
                                 onClick={ () => {
-                                    // navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`);
-                                    navigator.clipboard.writeText(`http://54.176.242.11/creator/${encryptedObj}`);
+                                    // copyLink(`http://localhost:3000/creator/${encryptedObj}`);
+                                    copyLink(`http://54.176.242.11/creator/${encryptedObj}`);
                                     setIfCreatorClicked(true);
                             }}
                             >
@@ -62,8 +87,8 @@ const CreatorView = () => {
                             <button
                                 className={styles.clickedShare}
                                 onClick={ () => {
-                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -72,8 +97,8 @@ const CreatorView = () => {
                             <button
                                 className={styles.shareLink}
                                 onClick={ () => {
-                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
                                     setIfShareClicked(true);
                                 }}
                             >
