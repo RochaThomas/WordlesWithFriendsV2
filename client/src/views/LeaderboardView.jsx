@@ -26,7 +26,7 @@ const LeaderboardView = () => {
             catch (err) {
                 console.error("Copy link unsuccessful", err);
             }
-            document.removeChild(textArea);
+            document.body.removeChild(textArea);
         }
         else {
             navigator.clipboard.writeText(text);
