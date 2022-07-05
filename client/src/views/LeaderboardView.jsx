@@ -40,7 +40,8 @@ const LeaderboardView = () => {
                             <button
                                 className={styles.clickedShare}
                                 onClick={ () => {
-                                    navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -49,7 +50,8 @@ const LeaderboardView = () => {
                             <button
                                 className={styles.shareLink}
                                 onClick={ () => {
-                                    navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
                                     setIfShareClicked(true);
                                 }}
                             >

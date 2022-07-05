@@ -41,7 +41,8 @@ const CreatorView = () => {
                         {ifCreatorClicked ? (
                             <button
                                 className={styles.clickedCreator}
-                                onClick={ () => {navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`)}}
+                                // onClick={ () => {navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`)}}
+                                onClick={ () => {navigator.clipboard.writeText(`http://54.176.242.11/creator/${encryptedObj}`)}}
                             >
                                 Copied!
                             </button>
@@ -49,7 +50,8 @@ const CreatorView = () => {
                             <button
                                 className={styles.creatorLink}
                                 onClick={ () => {
-                                    navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`);
+                                    // navigator.clipboard.writeText(`http://localhost:3000/creator/${encryptedObj}`);
+                                    navigator.clipboard.writeText(`http://54.176.242.11/creator/${encryptedObj}`);
                                     setIfCreatorClicked(true);
                             }}
                             >
@@ -60,7 +62,8 @@ const CreatorView = () => {
                             <button
                                 className={styles.clickedShare}
                                 onClick={ () => {
-                                    navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -69,7 +72,8 @@ const CreatorView = () => {
                             <button
                                 className={styles.shareLink}
                                 onClick={ () => {
-                                    navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    // navigator.clipboard.writeText(`http://localhost:3000/playgame/${encryptedObj}`);
+                                    navigator.clipboard.writeText(`http://54.176.242.11/playgame/${encryptedObj}`);
                                     setIfShareClicked(true);
                                 }}
                             >
