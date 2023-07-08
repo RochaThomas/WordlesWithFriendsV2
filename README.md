@@ -30,19 +30,19 @@ Database
 <img src="/images/home.png" alt="wordle with friends homepage">
 
 ### Creator Dashboard
-![Creator Leaderboard](/images/creator-leaderboard)
+![Creator Leaderboard](/images/creator-leaderboard.png)
 
 ### Game Instance - Guesser View
-![Guesser View Example](/images/guess-example)
+![Guesser View Example](/images/guess-example.png)
 
 ### Game Instance - Solved Example
-![Solved Example](/images/solve-example)
+![Solved Example](/images/solve-example.png)
 
 ### Game Instance - Failed Attempt
-![Failed Guess](/images/fail-example)
+![Failed Guess](/images/fail-example.png)
 
 ### Guesser Dashboard
-![Guesser Leaderboard](/images/guesser-leaderboard)
+![Guesser Leaderboard](/images/guesser-leaderboard.png)
 
 ## Development Team
 >  Tommy Rocha *(Frontend/Backend)* <br>
