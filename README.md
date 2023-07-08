@@ -26,12 +26,27 @@ Database
 * MySQL
 
 ## Demo
-
 #### Homepage
 <img src="/images/home.png" alt="wordle with friends homepage">
 
-### Game Instance
-<img src="/images/game.png" alt="wordle with friends game instance">
-
 ### Creator Dashboard
-<img src="/images/dashboard.png" alt="wordle with friends dashboard">
+![Creator Leaderboard](/images/creator-leaderboard)
+
+### Game Instance - Guesser View
+![Guesser View Example](/images/guess-example)
+
+### Game Instance - Solved Example
+![Solved Example](/images/solve-example)
+
+### Game Instance - Failed Attempt
+![Failed Guess](/images/fail-example)
+
+### Guesser Dashboard
+![Guesser Leaderboard](/images/guesser-leaderboard)
+
+## Development Team
+>  Tommy Rocha *(Frontend/Backend)* <br>
+<a href="https://github.com/RochaThomas"><img src="https://img.shields.io/badge/-GitHub-282A36?style=for-the-badge&logo=github"/></a>  <a href="https://www.linkedin.com/in/t-rocha/"><img src="https://img.shields.io/badge/-LinkedIn-1572B6?style=for-the-badge&logo=Linkedin"/></a>
+
+> Kenneth Martin *(Design/Frontend)* <br>
+<a href="https://github.com/martinkenneth"><img src="https://img.shields.io/badge/-GitHub-282A36?style=for-the-badge&logo=github"/></a>  <a href="https://www.linkedin.com/in/martin-kenneth/"><img src="https://img.shields.io/badge/-LinkedIn-1572B6?style=for-the-badge&logo=Linkedin"/></a>
