@@ -66,7 +66,7 @@ const CreatorView = () => {
                                 className={styles.clickedCreator}
                                 // onClick={ () => {copyLink(`http://localhost:3000/creator/${encryptedObj}`)}}
                                 onClick={ () => {
-                                    copyLink(`http://54.176.242.11/creator/${encryptedObj}`);
+                                    copyLink(`http://54.164.128.228/creator/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -76,7 +76,7 @@ const CreatorView = () => {
                                 className={styles.creatorLink}
                                 onClick={ () => {
                                     // copyLink(`http://localhost:3000/creator/${encryptedObj}`);
-                                    copyLink(`http://54.176.242.11/creator/${encryptedObj}`);
+                                    copyLink(`http://54.164.128.228/creator/${encryptedObj}`);
                                     setIfCreatorClicked(true);
                             }}
                             >
@@ -88,7 +88,7 @@ const CreatorView = () => {
                                 className={styles.clickedShare}
                                 onClick={ () => {
                                     // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.164.128.228/playgame/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -98,7 +98,7 @@ const CreatorView = () => {
                                 className={styles.shareLink}
                                 onClick={ () => {
                                     // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.164.128.228/playgame/${encryptedObj}`);
                                     setIfShareClicked(true);
                                 }}
                             >

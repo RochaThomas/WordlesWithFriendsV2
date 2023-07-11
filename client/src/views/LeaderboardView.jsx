@@ -63,7 +63,7 @@ const LeaderboardView = () => {
                                 className={styles.clickedShare}
                                 onClick={ () => {
                                     // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.164.128.228/playgame/${encryptedObj}`);
                                 }}
                             >
                                 Copied!
@@ -73,7 +73,7 @@ const LeaderboardView = () => {
                                 className={styles.shareLink}
                                 onClick={ () => {
                                     // copyLink(`http://localhost:3000/playgame/${encryptedObj}`);
-                                    copyLink(`http://54.176.242.11/playgame/${encryptedObj}`);
+                                    copyLink(`http://54.164.128.228/playgame/${encryptedObj}`);
                                     setIfShareClicked(true);
                                 }}
                             >
