@@ -7,7 +7,7 @@
   <h4 align="center">By: Tommy Rocha and Kenneth Martin</h4>
 </div>
 
-## [LINK TO DEPLOYED WORDLES WITH FRIENDS](54.164.128.228)
+## [LINK TO DEPLOYED WORDLES WITH FRIENDS](http://54.164.128.228)
 
 ## Demo
 
