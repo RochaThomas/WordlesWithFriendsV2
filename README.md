@@ -2,8 +2,9 @@
 <div align="center">
 <h2>Wordle with Friends</h2>
   <p align="center">
-    Inspired by the popular game <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>, we created Wordle with Friends so any user can create their own Wordle puzzle and share it to test their friends' Wordle skills. This is a full-stack web app built using: React, Java, Spring Boot, and MySQL. 
+    Inspired by the popular game <a href="https://www.nytimes.com/games/wordle/index.html">Wordle</a>, we created Wordle with Friends so any user can create their own Wordle puzzle and share it to test their friends' Wordle skills. This is a full-stack web app built using: React, MongoDB, Express, and NodeJS (MERN).  
   </p>
+  <h3 align="center"><a href="54.164.128.228">LINK TO DEPLOYED WORDLES WITH FRIENDS</a></h3>
   <h4 align="center">By: Tommy Rocha and Kenneth Martin</h4>
 </div>
 
@@ -40,11 +41,11 @@ Frontend
   * Axios
 * Custom CSS
 Backend
-* Java
-* Spring Boot
+* Express
+* NodeJS
 * API: https://dictionaryapi.dev/
 Database
-* MySQL
+* MongoDB
 
 ## Development Team
 >  Tommy Rocha *(Frontend/Backend/Design)* <br>
