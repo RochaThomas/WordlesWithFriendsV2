@@ -8,6 +8,11 @@
 </div>
 
 ## Demo
+
+### Demo Video
+*Click image below to watch a demo video*
+[![Wordles with Friends Demo Video](/images/demo-video-thumbnail.png)](https://youtu.be/nLj1fniXinU)
+
 ### Homepage
 <img src="/images/home.png" alt="wordle with friends homepage">
 
