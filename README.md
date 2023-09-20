@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <div align="center">
-<h2>Wordle with Friends</h2>
+<h2>Wordles with Friends</h2>
   <p align="center">
-    Inspired by the popular game <a href="http://www.nytimes.com/games/wordle/index.html">Wordle</a>, we created Wordle with Friends so any user can create their own Wordle puzzle and share it to test their friends' Wordle skills. This is a full-stack web app built using: React, MongoDB, Express, and NodeJS (MERN).  
+    Inspired by the popular game <a href="http://www.nytimes.com/games/wordle/index.html">Wordle</a>, we created Wordles with Friends so any user can create their own Wordle puzzle and share it to test their friends' Wordle skills. This is a full-stack web app built using: React, MongoDB, Express, and NodeJS (MERN).  
   </p>
   <h3 align="center"><a href="http://54.164.128.228">LINK TO DEPLOYED WORDLES WITH FRIENDS</a></h3>
   <h4 align="center">By: Tommy Rocha and Kenneth Martin</h4>
